@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+@{
+    Response.ContentType = "application/xrds+xml";
+    var asProvider = (ViewBag.AsProvider != null && ViewBag.AsProvider == true);
+    var providerUrl = new Uri(Request.Url, Response.ApplyAppPathModifier("~/OpenId/Provider"));
+}
+
+<xrds:XRDS xmlns:xrds="xri://$xrds"
+		   xmlns:openid="http://openid.net/xmlns/1.0"
+		   xmlns="xri://$xrd*($v*2.0)">
+	<XRD>
+		<Service priority="10">
+@if (asProvider)
+{
+            <Type>http://specs.openid.net/auth/2.0/server</Type>
+}
+else
+{
+            <Type>http://specs.openid.net/auth/2.0/signon</Type>
+}			
+			<Type>http://openid.net/extensions/sreg/1.1</Type>
+			<Type>http://axschema.org/contact/email</Type>
+@*
+			Add these types when and if the Provider supports the respective aspects of the UI extension.
+			<Type>http://specs.openid.net/extensions/ui/1.0/mode/popup</Type>
+			<Type>http://specs.openid.net/extensions/ui/1.0/lang-pref</Type>
+			<Type>http://specs.openid.net/extensions/ui/1.0/icon</Type>
+*@
+			<URI>@providerUrl</URI>
+		</Service>
+@if (!asProvider)
+{
+		<Service priority="20">
+			<Type>http://openid.net/signon/1.0</Type>
+			<Type>http://openid.net/extensions/sreg/1.1</Type>
+			<Type>http://axschema.org/contact/email</Type>
+			<URI>@providerUrl</URI>
+		</Service>
+}
+	</XRD>
+</xrds:XRDS>

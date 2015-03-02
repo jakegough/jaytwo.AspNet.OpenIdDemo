@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+Do you feel special? You're in the protected area.
+
+<h2>@User.Identity.Name</h2>
+
+<p>
+    @Html.ActionLink("Super Secure", "SuperSecure", "Protected")
+</p>
+
+<p>
+    @Html.ActionLink("Sign Out", "SignOut", "Login")
+</p>

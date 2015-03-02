@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "OpenId";
+}
+
+<h2>OpenId</h2>
+
+@using (Html.BeginForm("OpenId", "Login", FormMethod.Post))
+{
+    <input type="text" name="identifier" />
+    <input type="submit" value="Sign In" />
+}

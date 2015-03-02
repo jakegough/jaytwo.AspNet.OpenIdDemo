@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>This will authenticate you with whatever email address you enter here.</p>
+
+@using (Html.BeginForm("LogOn", "Account", FormMethod.Post))
+{
+    <span>Email Address:</span>
+    <input type="text" name="username" />
+	<input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl">
+	<input type="submit" value="Go" />
+}

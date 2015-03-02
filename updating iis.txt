@@ -1,0 +1,13 @@
+edit
+applicationhost.config
+in
+%userprofile%\documents\iisexpress\config\
+
+find
+<binding protocol="http" bindingInformation="*:14505:localhost" />
+
+add
+<binding protocol="http" bindingInformation="*:14505:localhost.jaytwo.com" />
+
+open command window as administrator, run
+netsh http add urlacl url=http://localhost.jaytwo.com:14505/ user=everyone
